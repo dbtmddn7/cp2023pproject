@@ -49,11 +49,27 @@
     }
 
     function btnBClick(e) {
-        let deleteRecord = new TestClass();
+    var query = new ncmb.Query(TestClass);
 
-        let objectId = ''; 
-        deleteRecord.set("objectId", objectId);
-    }
+    query.fetchAll()
+        .then(function(results) {
+            var firstRecord = results[0];
+            
+            firstRecord.delete()
+                .then(function() {
+                    console.log("Data Deleted:", firstRecord);
+                    $("#message").html("btnB clicked and first data deleted!");
+                })
+                .catch(function(error) {
+                    console.error("Delete failed:", error);
+                    $("#message").html("Delete failed");
+                });
+        })
+        .catch(function(error) {
+            console.error("Fetch failed:", error);
+            $("#message").html("Fetch failed");
+        });
+}
 
     function btnCClick(e) {
                 var TestClass = ncmb.DataStore("ClientRegister");
