@@ -8,68 +8,68 @@
     <link rel="stylesheet" href="components/loader.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="keys.js"></script>
-<script>
-var ncmb = new NCMB(appKey, clientKey);
-var TestClass = ncmb.DataStore("ClientRegister");
+    <script>
+    var ncmb = new NCMB(appKey, clientKey);
+    var TestClass = ncmb.DataStore("ClientRegister");
 
-$(function() {
-    $("#message").html("initialized");
-    $("#btnA").click(function(e) {
-        btnAClick(e);
-    })
-    $("#btnB").click(function(e) {
-        btnBClick(e);
-    })
-    $("#btnC").click(function(e) {
-        btnCClick(e);
-    })
-});
-
-function btnAClick(e) {
-    let newRecord = new TestClass();
-    let LN = $("#lastName").val();
-    let FN = $("#firstName").val();
-    let BD = $("#birthDay").val();
-    let RD = $("#registedDay").val();
-
-    newRecord.set("lastName", LN);
-    newRecord.set("firstName", FN);
-    newRecord.set("birthDay", BD);
-    newRecord.set("registedDay", RD);
-
-    newRecord.save()
-        .then(function(savedRecord) {
-            console.log("Data Saved:", savedRecord);
-            $("#message").html("btnA clicked !");
+    $(function() {
+        $("#message").html("initialized");
+        $("#btnA").click(function(e) {
+            btnAClick(e);
         })
-        .catch(function(error) {
-            console.error("Saved failed:", error);
-            $("#message").html("Saved failed");
-        });
-}
+        $("#btnB").click(function(e) {
+            btnBClick(e);
+        })
+        $("#btnC").click(function(e) {
+            btnCClick(e);
+        })
+    });
 
-function btnBClick(e) {
-    let deleteRecord = new TestClass();
+    function btnAClick(e) {
+        let newRecord = new TestClass();
+        let LN = $("#lastName").val();
+        let FN = $("#firstName").val();
+        let BD = $("#birthDay").val();
+        let RD = $("#registedDay").val();
 
-    let objectId = ''; 
-    deleteRecord.set("objectId", objectId);
-}
+        newRecord.set("lastName", LN);
+        newRecord.set("firstName", FN);
+        newRecord.set("birthDay", BD);
+        newRecord.set("registedDay", RD);
 
-function btnCClick(e) {
-            var TestClass = ncmb.DataStore("ClientRegister");
-            TestClass.fetchAll()
-            .then(function(results){
-                var msg = "";
-                for(var i = 0; i < results.length; i++){
-                    let LN = results[i].get("text");
-                    let FN = results[i].get("text");
-                    let BD = results[i].get("updateDate");
-                    let RD = results[i].get("updateDate");
-                    msg += data + ":" + update + "<br>";
-                }
-                $("#message").html(msg);
+        newRecord.save()
+            .then(function(savedRecord) {
+                console.log("Data Saved:", savedRecord);
+                $("#message").html("btnA clicked !");
             })
-        }
+            .catch(function(error) {
+                console.error("Saved failed:", error);
+                $("#message").html("Saved failed");
+            });
+    }
+
+    function btnBClick(e) {
+        let deleteRecord = new TestClass();
+
+        let objectId = ''; 
+        deleteRecord.set("objectId", objectId);
+    }
+
+    function btnCClick(e) {
+                var TestClass = ncmb.DataStore("ClientRegister");
+                TestClass.fetchAll()
+                .then(function(results){
+                    var msg = "";
+                    for(var i = 0; i < results.length; i++){
+                        let LN = results[i].get("text");
+                        let FN = results[i].get("text");
+                        let BD = results[i].get("updateDate");
+                        let RD = results[i].get("updateDate");
+                        msg += data + ":" + update + "<br>";
+                    }
+                    $("#message").html(msg);
+                })
+            }
 </script>
 
 </head>
