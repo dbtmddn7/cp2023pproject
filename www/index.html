@@ -24,6 +24,29 @@ $(function() {
         btnCClick(e);
     })
 });
+
+function btnAClick(e) {
+    let newRecord = new TestClass();
+    let LN = $("#lastName").val();
+    let FN = $("#firstName").val();
+    let BD = $("#birthDay").val();
+    let RD = $("#registedDay").val();
+
+    newRecord.set("lastName", LN);
+    newRecord.set("firstName", FN);
+    newRecord.set("birthDay", BD);
+    newRecord.set("registedDay", RD);
+
+    newRecord.save()
+        .then(function(savedRecord) {
+            console.log("Data Saved:", savedRecord);
+            $("#message").html("btnA clicked !");
+        })
+        .catch(function(error) {
+            console.error("Saved failed:", error);
+            $("#message").html("Saved failed");
+        });
+}
 </script>
 
 </head>
