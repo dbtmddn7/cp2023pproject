@@ -47,6 +47,24 @@ function btnAClick(e) {
             $("#message").html("Saved failed");
         });
 }
+
+
+
+function btnCClick(e) {
+            var TestClass = ncmb.DataStore("ClientRegister");
+            TestClass.fetchAll()
+            .then(function(results){
+                var msg = "";
+                for(var i = 0; i < results.length; i++){
+                    let LN = results[i].get("text");
+                    let FN = results[i].get("text");
+                    let BD = results[i].get("updateDate");
+                    let RD = results[i].get("updateDate");
+                    msg += data + ":" + update + "<br>";
+                }
+                $("#message").html(msg);
+            })
+        }
 </script>
 
 </head>
